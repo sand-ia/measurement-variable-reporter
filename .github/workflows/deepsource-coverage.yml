@@ -1,0 +1,35 @@
+name: 'Workflow: Test coverage'
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: 'Workflow: Test coverage'
+    runs-on: ubuntu-latest
+    env:
+      OS: ubuntu-latest
+      PYTHON: '3.9'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # Generate coverage report in xml format coverage xml
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Run pytest with --cov and --cov-report flags
+        run: pytest --cov=./src --cov-branch --cov-report xml
+
+      - name: Install deepsource CLI
+        run: curl https://deepsource.io/cli | sh
+
+      - name: From the root directory, run the report coverage command
+        run: ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
