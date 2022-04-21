@@ -1,26 +1,25 @@
 ![alt text](https://img.shields.io/badge/python-3.9-blue)
-![alt text](https://img.shields.io/github/issues/bestables/fantastic-broccoli)
-![alt text](https://img.shields.io/github/forks/bestables/fantastic-broccoli)
-![alt text](https://img.shields.io/github/stars/bestables/fantastic-broccoli)
-![alt text](https://img.shields.io/github/license/bestables/fantastic-broccoli)
-![alt text](https://img.shields.io/github/issues/bestables/fantastic-broccoli)
+![alt text](https://img.shields.io/github/issues/bestables/shiny-palm-tree)
+![alt text](https://img.shields.io/github/forks/bestables/shiny-palm-tree)
+![alt text](https://img.shields.io/github/stars/bestables/shiny-palm-tree)
+![alt text](https://img.shields.io/github/license/bestables/shiny-palm-tree)
 
-# Fantastic Broccoli
+# Shiny Palm Tree
 
-**Fantastic Broccoli** is a simple python backend to broadcast data through LoRa.
+**Shiny Palm Tree** is a simple python backend to broadcast data through LoRa.
 
 ## Installation
 
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/bestables/fantastic-broccoli.git
+git clone https://github.com/bestables/shiny-palm-tree.git
 ```
 
 2. Move into the project folder:
 
 ```sh
-cd fantastic-broccoli
+cd shiny-palm-tree
 ```
 
 3. Create a virtual enviroment with Python 3.9:
@@ -67,4 +66,4 @@ flask run
 
 Copyright Bestables, 2022.
 
-Distributed under the terms of the [MIT License](LICENSE), Fantastic Broccoli is free and open source software.
+Distributed under the terms of the [MIT License](LICENSE), Shiny Palm Tree is free and open source software.
