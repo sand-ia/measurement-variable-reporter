@@ -9,11 +9,11 @@ Backward incompatible changes will only be introduced in major versions with adv
 
 ## [Unreleased]
 
-## [v0.1.0] - 2022-19-04
+## [v0.1.0] - 2022-21-04
 
 ### Added
 
 - First pre-release! 🎉
 
-[unreleased]: https://github.com/bestables/fantastic-broccoli/compare/v0.1.0...HEAD
-[v0.1.0]: https://github.com/bestables/fantastic-broccoli/releases/tag/v0.1.0
+[unreleased]: https://github.com/bestables/shiny-palm-tree/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/bestables/shiny-palm-tree/releases/tag/v0.1.0
