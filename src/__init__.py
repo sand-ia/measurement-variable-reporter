@@ -1,9 +1,5 @@
-"""Shiny Palm Tree startup."""
-from dotenv import load_dotenv
+"""Fantastic Brocolli startup."""
 from flask import Flask
-
-# Load enviroment variables
-load_dotenv()
 
 
 def create_app() -> Flask:

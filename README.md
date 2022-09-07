@@ -1,8 +1,8 @@
 ![alt text](https://img.shields.io/badge/python-3.9-blue)
-![alt text](https://img.shields.io/github/issues/bestables/shiny-palm-tree)
-![alt text](https://img.shields.io/github/forks/bestables/shiny-palm-tree)
-![alt text](https://img.shields.io/github/stars/bestables/shiny-palm-tree)
-![alt text](https://img.shields.io/github/license/bestables/shiny-palm-tree)
+![alt text](https://img.shields.io/github/issues/sand-ia/shiny-palm-tree)
+![alt text](https://img.shields.io/github/forks/sand-ia/shiny-palm-tree)
+![alt text](https://img.shields.io/github/stars/sand-ia/shiny-palm-tree)
+![alt text](https://img.shields.io/github/license/sand-ia/shiny-palm-tree)
 
 # Shiny Palm Tree
 
@@ -13,7 +13,7 @@
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/bestables/shiny-palm-tree.git
+git clone https://github.com/sand-ia/shiny-palm-tree.git
 ```
 
 2. Move into the project folder:
@@ -64,6 +64,6 @@ flask run
 
 ## License & copyright
 
-Copyright Bestables, 2022.
+Copyright Sandia, 2022.
 
 Distributed under the terms of the [MIT License](LICENSE), Shiny Palm Tree is free and open source software.
