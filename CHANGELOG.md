@@ -37,6 +37,6 @@ Backward incompatible changes will only be introduced in major versions with adv
 
 - First pre-release! 🎉
 
-[unreleased]: https://github.com/bestables/shiny-palm-tree/compare/v0.2.0...HEAD
-[v0.2.0]: https://github.com/bestables/shiny-palm-tree/releases/tag/v0.2.0
-[v0.1.0]: https://github.com/bestables/shiny-palm-tree/releases/tag/v0.1.0
+[unreleased]: https://github.com/bestables/measurement-variable-reporter/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/bestables/measurement-variable-reporter/releases/tag/v0.2.0
+[v0.1.0]: https://github.com/bestables/measurement-variable-reporter/releases/tag/v0.1.0
