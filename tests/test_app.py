@@ -1,4 +1,4 @@
-"""Test Shiny Palm Tree startup."""
+"""Test Measurement Variable Reporter startup."""
 from flask import Flask
 from src import create_app
 
