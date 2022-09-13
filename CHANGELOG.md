@@ -9,6 +9,20 @@ Backward incompatible changes will only be introduced in major versions with adv
 
 ## [Unreleased]
 
+## [v0.3.0] - 2022-12-09
+
+### Changed
+
+- Rename project from shiny-palm-tree to measurement-variable-reporter
+- Update test file structure to match src
+
+### Removed
+
+- Remove unused bounded context measurement-variable-analyser
+- Remove unused bounded context analysis-reporter
+- Remove unused flask startup test
+- Remove share folder
+
 ## [v0.2.0] - 2022-07-09
 
 ### Added
@@ -37,6 +51,7 @@ Backward incompatible changes will only be introduced in major versions with adv
 
 - First pre-release! 🎉
 
-[unreleased]: https://github.com/bestables/measurement-variable-reporter/compare/v0.2.0...HEAD
-[v0.2.0]: https://github.com/bestables/measurement-variable-reporter/releases/tag/v0.2.0
-[v0.1.0]: https://github.com/bestables/measurement-variable-reporter/releases/tag/v0.1.0
+[unreleased]: https://github.com/sand-ia/measurement-variable-reporter/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/sand-ia/measurement-variable-reporter/compare/v0.2.0...v0.3.0
+[v0.2.0]: https://github.com/sand-ia/measurement-variable-reporter/compare/v0.1.0...v0.2.0
+[v0.1.0]: https://github.com/sand-ia/measurement-variable-reporter/releases/tag/v0.1.0
