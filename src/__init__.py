@@ -1,5 +1,8 @@
 """Fantastic Brocolli startup."""
 from flask import Flask
+from src.measurement_variable_reporter.interface.controllers.graphql_controller import (
+    graphql_controller,
+)
 
 
 def create_app() -> Flask:
@@ -13,6 +16,7 @@ def create_app() -> Flask:
     # Start DB Connection
 
     # Start Controllers
+    app.register_blueprint(graphql_controller)
 
     # Start Dependency Injections
 
