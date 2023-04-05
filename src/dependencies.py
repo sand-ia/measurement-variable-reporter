@@ -1,5 +1,5 @@
 """Configure the dependency injection tree."""
-from injector import singleton
+from injector import Binder, singleton
 
 # Ports
 from src.measurement_variable_reporter.application.services.testService import (
@@ -13,5 +13,5 @@ from src.measurement_variable_reporter.application.services.impl.testServiceDefa
 )
 
 
-def configure(binder):
+def configure_graphql_injector(binder: Binder) -> None:
     binder.bind(TestService, to=TestServiceDefault, scope=singleton)

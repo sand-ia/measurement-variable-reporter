@@ -1,29 +1,19 @@
 """Fantastic Brocolli startup."""
 from flask import Flask
-from flask_graphql import GraphQLView
-from flask_injector import FlaskInjector
-
-from src.dependencies import configure
+from src.dependencies import configure_graphql_injector
+from src.graphql_injector import create_injected_graphql_view
 from src.measurement_variable_reporter.interface.graphql.schema import schema
 
 
 def create_app() -> Flask:
-    """Start Flask Application.
+    # Instantiate Flask object.
+    app = Flask(__name__)
 
-    :return: Flask Application.
-    :rtype: Flask
-    """
-    app: Flask = Flask(__name__)
+    # Create GraphQL view with required dependencies injected.
+    graphql_view = create_injected_graphql_view(schema, [configure_graphql_injector])
 
-    # Start DB Connection
-
-    # Start Controllers
-    app.add_url_rule(
-        "/graphql",
-        view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True),
-    )
-
-    # Start Dependency Injections
+    # Add GraphQL controller to Flask app.
+    app.add_url_rule("/graphql", view_func=graphql_view)
 
     # Start Broker Consumers
 
