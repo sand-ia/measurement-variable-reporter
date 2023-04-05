@@ -1,7 +1,7 @@
 from typing import Any, Callable, List
+from injector import Binder, Injector
 from flask_graphql import GraphQLView
 from graphene import Schema
-from injector import Binder, Injector
 
 _ModuleT = Callable[[Binder], None]
 
@@ -20,13 +20,7 @@ def _install_modules(injector: Injector, modules: List[_ModuleT] = []) -> Inject
 
 
 def _get_graphql_view(injector: Injector, schema: Schema) -> Any:
-    graphql_scheme = schema
-
-    class GraphQLViewWithContext(GraphQLView):
-        schema = graphql_scheme
-
-        def get_context(self):
-            return {"dependency_container": injector}
-
-    graphql_view: Any = GraphQLViewWithContext.as_view("graphql")
+    graphql_view: Any = GraphQLView.as_view(
+        "graphql", schema=schema, get_context=lambda: {"dependency_container": injector}
+    )
     return graphql_view
