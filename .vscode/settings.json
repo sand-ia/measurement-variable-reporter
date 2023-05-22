@@ -1,7 +1,7 @@
 {
   "python.linting.enabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.pydocstyleEnabled": true,
+  "python.linting.mypyEnabled": false,
+  "python.linting.pydocstyleEnabled": false,
   "python.linting.pycodestyleEnabled": false,
   "python.linting.banditEnabled": false,
   "python.linting.pylintEnabled": false,
@@ -15,7 +15,8 @@
     "--no-pretty",
     "--follow-imports=silent"
   ],
-  "python.formatting.provider": "black",
+  "python.linting.pylintArgs": ["--disable=C0111"],
+  "python.formatting.provider": "none",
   "editor.formatOnSave": true,
   "files.exclude": {
     ".deepsource.toml": true,
@@ -28,5 +29,9 @@
     "**/.vscode": true,
     "**/coverage.xml": true
   },
-  "editor.renderWhitespace": "all"
+  "editor.renderWhitespace": "all",
+  "python.analysis.typeCheckingMode": "strict",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
 }
