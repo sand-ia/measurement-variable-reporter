@@ -1,10 +1,14 @@
 from graphene import Schema
 
-from src.interface.graphql.warehouse.provider import WarehouseQueries
+from src.interface.graphql.warehouse.provider import WarehouseCommands, WarehouseQueries
 
 
 class Queries(WarehouseQueries):
     pass
 
 
-schema = Schema(query=Queries)
+class Commands(WarehouseCommands):
+    pass
+
+
+schema = Schema(query=Queries, mutation=Commands)

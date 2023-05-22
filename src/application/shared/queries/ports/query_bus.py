@@ -5,8 +5,7 @@ from src.application.shared.queries.domain.response import Response
 
 
 class QueryBus(ABC):
-    # * When implementing this class, register all the QueryHandler
-    # * in the __init__.
+    # * When implementing, register all the query handlers in the constructor.
 
     @abstractmethod
     def dispatch(self, query: Query) -> Response:

@@ -1,30 +1,32 @@
-# from typing import Any, Type
-# from injectable import injectable, autowired, Autowired
-# from src.buses.events.ports.consumer import Consumer
-# from src.buses.events.ports.producer import Producer
+from typing import Any, Dict, List, Union
+from injectable import injectable
 
-# from src.application.shared.queries.domain.query_handler import QueryHandler
-
-# from src.application.warehouse.products.services.get_product_stock.get_product_stock_query import (
-#     GetProductQuery,
-# )
-# from src.infrastructure.repositories.in_memory_db import in_memory_db
-
-# AutowiredProducer: Type[Producer[Any]] = Autowired(Producer)
-# AutowiredConsumer: Type[Consumer[Any]] = Autowired(Consumer)
+from src.application.warehouse.products.domain.product import Product
+from src.application.warehouse.products.ports.product_respository import (
+    ProductRepository,
+)
+from src.infrastructure.repositories.in_memory_db import in_memory_db
 
 
-# @injectable(singleton=True)  # type: ignore
-# class InMemoryDBProductRepository(QueryHandler[GetProductStockQuery]):
-#     @autowired
-#     def __init__(
-#         self, producer: AutowiredProducer, consumer: AutowiredConsumer
-#     ) -> None:
-#         self._producer = producer
-#         self._consumer = consumer
-#         print("Infraestructure: subscribing to topic-query-i")
-#         consumer.subscribe("topic-query-i", self.handle)
+@injectable(singleton=True)  # type: ignore
+class InMemoryDBProductRepository(ProductRepository):
+    def save(self, entity: Product) -> None:
+        document: Dict[str, Any] = {
+            "uuid": entity.uuid,
+            "stock": entity.stock,
+        }
+        in_memory_db.save("products", document)
 
-#     def handle(self, query: GetProductStockQuery) -> None:
-#         product = in_memory_db.get("products", query.uuid)
-#         self._producer.publish("topic-query-i-response", product)
+    def get(self, uuid: str) -> Product:
+        document = in_memory_db.get("products", uuid)
+        product = Product(document["uuid"], document["stock"])
+        return product
+
+    def update(self, uuid: str, entity: Product) -> None:
+        raise NotImplementedError
+
+    def delete(self, uuid: str) -> None:
+        raise NotImplementedError
+
+    def find(self, uuids: Union[List[str], None] = None) -> List[Product]:
+        raise NotImplementedError

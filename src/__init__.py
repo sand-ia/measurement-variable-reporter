@@ -20,6 +20,16 @@ def create_app() -> Flask:
     return app
 
 
+def load_presentation(app: Flask) -> None:
+    # TODO: health check endpoint
+    load_graphql(app)
+
+
+def load_graphql(app: Flask):
+    graphql_view = GraphQLView.as_view("graphql", schema=schema)  # type: ignore
+    app.add_url_rule("/graphql", view_func=graphql_view)  # type: ignore
+
+
 def load_infraestructure(_: Flask) -> None:
     # TODO: load_in_memory_database.
     load_in_memory_db()
@@ -48,16 +58,6 @@ def load_in_memory_broker():
     # instantiate_query_consumers()
 
 
-def load_presentation(app: Flask) -> None:
-    # TODO: health check endpoint
-    load_graphql(app)
-
-
-def load_graphql(app: Flask):
-    graphql_view = GraphQLView.as_view("graphql", schema=schema)  # type: ignore
-    app.add_url_rule("/graphql", view_func=graphql_view)  # type: ignore
-
-
 # BaseQueryHandler: TypeAlias = QueryHandler[Query]
 # QueryHandlers: TypeAlias = List[BaseQueryHandler]
 # AutowiredQueryHandlers: Type[QueryHandlers] = Autowired(QueryHandlers)
@@ -65,4 +65,4 @@ def load_graphql(app: Flask):
 
 # @autowired
 # def instantiate_query_consumers(_: AutowiredQueryHandlers) -> None:
-#     pass
+#      pass

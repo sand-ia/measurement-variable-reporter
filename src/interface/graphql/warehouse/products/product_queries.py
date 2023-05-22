@@ -9,7 +9,7 @@ from graphene import (
 
 from src.application.shared.queries.domain.response import Response
 from src.application.shared.queries.ports.query_bus import QueryBus
-from src.application.warehouse.products.services.get_product_stock.get_product_stock_query import (
+from src.application.warehouse.products.services.get_product.get_product_query import (
     GetProductQuery,
 )
 
@@ -17,8 +17,8 @@ from src.application.warehouse.products.services.get_product_stock.get_product_s
 AutowiredQueryBus = Autowired(QueryBus)
 
 
-# class GetProductInput(InputObjectType):
-#     uuid = ID()
+class GetProductInput(ID):
+    pass
 
 
 class GetProductOutput(ObjectType):
@@ -27,7 +27,7 @@ class GetProductOutput(ObjectType):
 
 
 class ProductQueries(ObjectType):
-    get_product = Field(GetProductOutput, uuid=ID())
+    get_product = Field(GetProductOutput, uuid=GetProductInput())
 
     @staticmethod
     @autowired
