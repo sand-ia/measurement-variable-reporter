@@ -1,5 +1,2 @@
-from abc import ABC
-
-
-class Command(ABC):
+class Command:
     pass

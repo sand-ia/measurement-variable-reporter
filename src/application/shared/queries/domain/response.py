@@ -1,5 +1,2 @@
-from abc import ABC
-
-
-class Response(ABC):
+class Response:
     pass

@@ -1,5 +1,2 @@
-from abc import ABC
-
-
-class ValueObject(ABC):
+class ValueObject:
     pass

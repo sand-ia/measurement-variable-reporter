@@ -1,5 +1,2 @@
-from abc import ABC
-
-
-class Query(ABC):
+class Query:
     pass

@@ -1,21 +1,21 @@
 from datetime import datetime
 from typing import Any, Union
+from uuid import UUID
 from src.application.shared.events.domain.event import Event
-
-AGGREGATE = "product"
+from src.application.warehouse.aggregates import WarehouseAggregate
 
 
 class ProductEvent(Event):
     def __init__(
         self,
-        aggregate_uuid: str,
+        aggregate_uuid: UUID,
         data: Any,
-        event_uuid: Union[str, None] = None,
+        event_uuid: Union[UUID, None] = None,
         created_at: Union[datetime, None] = None,
     ) -> None:
         super().__init__(
             aggregate_uuid,
-            AGGREGATE,
+            WarehouseAggregate.PRODUCT,
             data,
             event_uuid,
             created_at,

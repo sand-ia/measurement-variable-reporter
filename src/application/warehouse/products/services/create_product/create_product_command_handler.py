@@ -1,3 +1,4 @@
+from uuid import UUID
 from injectable import injectable, autowired, Autowired
 
 from src.application.shared.commands.domain.command_handler import CommandHandler
@@ -13,11 +14,12 @@ AutowiredProductRepository = Autowired(ProductRepository)
 
 
 @injectable(singleton=True)  # type: ignore
-class CreateProductCommandHandler(CommandHandler[CreateProductCommand, str]):
+class CreateProductCommandHandler(CommandHandler[CreateProductCommand, UUID]):
     @autowired
     def __init__(self, product_repository: AutowiredProductRepository) -> None:
         self._product_repository = product_repository
 
-    def handle(self, command: CreateProductCommand) -> str:
+    def handle(self, command: CreateProductCommand) -> UUID:
         product, event = ProductFactory.create(command.stock)
+        self._product_repository.save(product)
         return product.uuid

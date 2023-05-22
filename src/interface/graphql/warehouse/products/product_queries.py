@@ -1,3 +1,4 @@
+from uuid import UUID
 from injectable import autowired, Autowired
 from graphene import (
     ObjectType,
@@ -34,7 +35,7 @@ class ProductQueries(ObjectType):
     def resolve_get_product(
         _parent: None,
         _info: ResolveInfo,
-        uuid: str,
+        uuid: UUID,
         query_bus: AutowiredQueryBus,
     ) -> Response:
         get_product_query = GetProductQuery(uuid)

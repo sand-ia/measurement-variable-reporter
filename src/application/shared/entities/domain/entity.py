@@ -1,5 +1,6 @@
-from abc import ABC
+from uuid import UUID
 
 
-class Entity(ABC):
-    pass
+class Entity:
+    def __init__(self, uuid: UUID) -> None:
+        self.uuid = uuid

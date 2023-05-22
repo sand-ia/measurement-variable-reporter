@@ -1,3 +1,4 @@
+from uuid import UUID
 from injectable import autowired, Autowired
 from graphene import (
     ObjectType,
@@ -35,10 +36,10 @@ class ProductCommands(ObjectType):
         _info: ResolveInfo,
         product: CreateProductInput,
         command_bus: AutowiredCommandBus,
-    ) -> str:
+    ) -> UUID:
         create_product_command = CreateProductCommand(product.stock)
         uuid = command_bus.dispatch(create_product_command)
-        if not isinstance(uuid, str):
+        if not isinstance(uuid, UUID):
             raise Exception
         return uuid
 

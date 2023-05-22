@@ -7,9 +7,7 @@ class InMemoryDB:
         self._user: str = user
         self._password: str = password
         self._is_authorized: bool = False
-        self._tables: Dict[str, List[Dict[str, Any]]] = {
-            "products": [{"uuid": "db31a1d6-222a-456b-b67e-6dd80f558c07", "stock": 5}]
-        }
+        self._tables: Dict[str, List[Dict[str, Any]]] = {}
 
     def connect(self, user: str, password: str) -> None:
         if self._user == user and self._password == password:
@@ -44,16 +42,12 @@ class InMemoryDB:
     def get(self, table_name: str, document_id: str) -> Dict[str, Any]:
         table = self.get_all(table_name)
 
-        found_document = None
         for document in table:
             if document["uuid"] == document_id:
-                found_document = document
+                return document
 
-        if found_document is None:
-            # TODO: raise correct exception.
-            raise Exception("InMemoryDB: Document not found")
-
-        return found_document
+        # TODO: raise correct exception.
+        raise Exception("InMemoryDB: Document not found")
 
 
 # TODO: Get user and pass from .env
