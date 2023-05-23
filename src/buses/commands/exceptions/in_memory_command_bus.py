@@ -1,4 +1,4 @@
-from typing import Dict, List, TypeAlias, Union
+from typing import Dict, List, TypeAlias
 from inspect import signature
 from uuid import UUID
 from injectable import Autowired, autowired, injectable
@@ -7,7 +7,7 @@ from src.application.shared.commands.domain.command import Command
 from src.application.shared.commands.ports.command_bus import CommandBus
 from src.application.shared.commands.domain.command_handler import CommandHandler
 
-DefaultCommandHandler: TypeAlias = CommandHandler[Command, Union[UUID, None]]
+DefaultCommandHandler: TypeAlias = CommandHandler[Command, UUID | None]
 CommandHandlers: TypeAlias = List[DefaultCommandHandler]
 AutowiredCommandHandlers = Autowired(CommandHandlers)
 
@@ -24,7 +24,7 @@ class InMemoryCommandBus(CommandBus):
             command_class = parameter.annotation
             self.command_handlers[command_class] = command_handler
 
-    def dispatch(self, command: Command) -> Union[UUID, None]:
+    def dispatch(self, command: Command) -> UUID | None:
         command_class = command.__class__
         handler = self.command_handlers.get(command_class)
         if handler is None:

@@ -1,13 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar
 
-from src.buses import events
-
-
-M = TypeVar("M", bound=events)
+from src.application.shared.events.domain.event import Event
 
 
-class Producer(Generic[M], ABC):
+class Producer(ABC):
     @abstractmethod
-    def publish(self, topic: str, message: M) -> None:
+    def publish(self, topic: str, event: Event) -> None:
         raise NotImplementedError

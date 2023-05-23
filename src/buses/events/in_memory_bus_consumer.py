@@ -1,4 +1,4 @@
-from typing import Any, Union
+from typing import Any
 from injectable import injectable
 from src.application.shared.events.ports.consumer import Consumer
 
@@ -16,7 +16,7 @@ class InMemoryBusConsumer(Consumer[Any]):
 
     def subscribe_and_wait(self, topic: str) -> Any:
         promise: Any = None
-        subscription: Union[Subscription, None] = None
+        subscription: Subscription | None = None
 
         def complete_promise(response: Any) -> None:
             nonlocal promise

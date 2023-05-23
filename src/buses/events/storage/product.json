@@ -1,0 +1,202 @@
+[
+  {
+    "aggregate_uuid": "21b70a17-b98d-4f4c-844e-773fd516011c",
+    "aggregate": "Product",
+    "event_uuid": "95f0b03a-6d04-494a-9dd8-d8f7ce581ce0",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T20:27:50.301599",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "16183f79-2523-4043-8188-d2621a108403",
+    "aggregate": "Product",
+    "event_uuid": "e18b30e5-c2e1-43e4-a154-09ed4f702f69",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T20:58:29.387304",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "3fd36d5e-bbb3-4859-a99d-e9726dae9905",
+    "aggregate": "Product",
+    "event_uuid": "eefef90c-78b3-40f9-a81c-e925227df8d5",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:02:49.308996",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "74342cf1-a90c-4cfc-ad11-0c31a94adc88",
+    "aggregate": "Product",
+    "event_uuid": "52b221d4-0403-418a-905e-572ff5e8e433",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:14.864677",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "3b1f00f9-7ae9-47f2-b76e-6beb2d06363a",
+    "aggregate": "Product",
+    "event_uuid": "50b1aab4-9790-47d4-8e80-d290a637ddb0",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:16.536172",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "bf955e9a-d415-4652-8b03-4ba04c4f1a82",
+    "aggregate": "Product",
+    "event_uuid": "9ed42907-55bd-4649-b2e1-bc59f3cc40fe",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:17.483220",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "a9b9a9a8-e7af-4739-9252-b5b64cd8e515",
+    "aggregate": "Product",
+    "event_uuid": "082deaa8-0f62-4b84-8914-598fd12e265f",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:22.089488",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "4aa2e6d5-c9ba-42a0-aa09-4079800c6e6f",
+    "aggregate": "Product",
+    "event_uuid": "f62e2139-d1fa-4290-b34c-bd83a8ba5819",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:52.948757",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "fa2d4500-d4c6-48f9-9531-e1be6522ee85",
+    "aggregate": "Product",
+    "event_uuid": "0adcc306-c160-406e-af43-48ecb9e16141",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:54.119318",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "a76dd1c8-668a-4bbf-bc02-34b2fd3c1ac1",
+    "aggregate": "Product",
+    "event_uuid": "19e53d71-df25-4059-8695-3fc7dd64d36f",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:04:55.379331",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "b2ddaace-215c-4600-b74f-c439a50bf2bc",
+    "aggregate": "Product",
+    "event_uuid": "33c024ad-a0a3-449e-b5d6-ff3406a4bfeb",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:05:02.221776",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "995cd8ce-c835-415d-8239-e89d530bc0cc",
+    "aggregate": "Product",
+    "event_uuid": "51045a98-a15a-4cd6-a6ba-a213e304d6ba",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:05:03.057126",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "1ce042c6-8cf5-429f-b393-fee06e7bb422",
+    "aggregate": "Product",
+    "event_uuid": "61414d5f-3953-4c77-ad0e-30ef332697ad",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:05:32.523409",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "8ed637bd-9379-47b3-8134-94c691268041",
+    "aggregate": "Product",
+    "event_uuid": "bf2fec17-0d0f-4825-b904-0c9ffdc113ab",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:06:21.657024",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "52474f59-fd09-4b12-a4c9-f688c850117f",
+    "aggregate": "Product",
+    "event_uuid": "dff7e440-379c-48fc-960f-d99fd0052f04",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:06:35.619746",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "2dd0c35c-d396-4167-99e0-b0a5ea61f695",
+    "aggregate": "Product",
+    "event_uuid": "c2372691-27f2-4b6a-b2cc-42c66abf7c7f",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:12:55.419888",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "e6a50d59-1cbe-467b-a106-374af0f97b70",
+    "aggregate": "Product",
+    "event_uuid": "6889682e-458a-46b9-a021-fb783e6003cd",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:13:01.209276",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "e7822bbb-8f5b-466f-9541-feb4c6fa9800",
+    "aggregate": "Product",
+    "event_uuid": "f5abb373-1e9e-4648-8f7c-025a4020103b",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:13:01.961773",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "e6f522a9-5746-4f72-9b4f-88d3b928575e",
+    "aggregate": "Product",
+    "event_uuid": "9ebbf35b-ba17-4033-85b8-8205760d424f",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:13:02.598992",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "632653b5-17c0-4e77-bacd-af35f297b82b",
+    "aggregate": "Product",
+    "event_uuid": "7b05405d-0914-4b88-a327-dc5f4ebbb1e7",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:19:17.249916",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "b7826c2b-e66c-4247-891c-839caf3372a8",
+    "aggregate": "Product",
+    "event_uuid": "e945641d-1f47-4fbc-b16a-100059b0ed39",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:19:18.323888",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "c14a4cf6-04b9-4b1b-b76d-5a8c951ecfca",
+    "aggregate": "Product",
+    "event_uuid": "fea58aa0-5d91-402f-bb4c-659bb3e75aca",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:24:36.696870",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "ca8da048-e91e-444e-9aa5-67bfa863a04c",
+    "aggregate": "Product",
+    "event_uuid": "79a21a54-d1a6-4718-a326-8802f92b33a3",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:24:38.064609",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "04e0b79c-6d1a-473e-9e05-5814d2155e1f",
+    "aggregate": "Product",
+    "event_uuid": "98d1b1a0-7f44-4aed-8ff8-2613d370a39c",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T21:24:38.950249",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "d3b39921-912b-499f-8318-9de3274f8cd5",
+    "aggregate": "Product",
+    "event_uuid": "051f929c-2fd8-4e42-99ac-e655ec3a4d36",
+    "event": "ProductCreatedEvent",
+    "created_at": "2023-05-23T22:11:30.961384",
+    "stock": 50
+  }
+]

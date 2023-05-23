@@ -1,21 +1,18 @@
 from datetime import datetime
-from typing import Any, Union
 from uuid import UUID, uuid4
 
-from src.application.warehouse.aggregates import WarehouseAggregate
+from src.application.shared.entities.domain.aggregate_root import AggregateRoot
 
 
 class Event:
     def __init__(
         self,
-        aggregate_uuid: UUID,
-        aggregate: WarehouseAggregate,
-        data: Any,
-        event_uuid: Union[UUID, None] = None,
-        created_at: Union[datetime, None] = None,
+        aggregate: AggregateRoot,
+        event_uuid: UUID | None = None,
+        created_at: datetime | None = None,
     ) -> None:
-        self._event_uuid = event_uuid if event_uuid is not None else str(uuid4())
-        self._aggregate_uuid = aggregate_uuid
-        self._aggregate = aggregate
-        self._data = data
-        self._created_at = created_at if created_at is not None else datetime.utcnow()
+        self.aggregate_uuid = aggregate.uuid
+        self.aggregate = aggregate.__class__
+        self.event_uuid = event_uuid if event_uuid is not None else str(uuid4())
+        self.event = self.__class__
+        self.created_at = created_at if created_at is not None else datetime.utcnow()

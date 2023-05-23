@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
 from uuid import UUID
 from injectable import injectable
 
@@ -29,5 +29,5 @@ class InMemoryDBProductRepository(ProductRepository):
     def delete(self, uuid: UUID) -> None:
         raise NotImplementedError
 
-    def find(self, uuids: Union[List[UUID], None] = None) -> List[Product]:
+    def find(self, uuids: List[UUID] | None = None) -> List[Product]:
         raise NotImplementedError

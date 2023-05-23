@@ -1,16 +1,35 @@
+from datetime import datetime
+from enum import Enum
+import json
+from uuid import UUID
 from threading import Thread
-from typing import Any, Callable, Dict, List, TypeAlias, Union
+from typing import Any, Callable, Dict, List, TypeAlias
+from inspect import isclass
 
 from src.application.shared.events.domain.event import Event
+
 
 Callback: TypeAlias = Callable[[Any], None]
 Callbacks: TypeAlias = List[Callback]
 
 
+class Encoder(json.JSONEncoder):
+    def default(self, o: Any):
+        if isinstance(o, UUID):
+            return str(o)
+        if isinstance(o, datetime):
+            return o.isoformat()
+        if isinstance(o, Enum):
+            return o.value
+        if isclass(o):
+            return o.__name__
+        if o.__class__ is not None:
+            return o.__dict__
+        return super().default(o)
+
+
 class Subscription:
-    def __init__(
-        self, callback: Union[Callback, None], callbacks: Union[Callbacks, None]
-    ) -> None:
+    def __init__(self, callback: Callback | None, callbacks: Callbacks | None) -> None:
         self.callback = callback
         self.callbacks = callbacks
 
@@ -50,6 +69,21 @@ class InMemoryEventBus:
 
     def publish(self, topic: str, event: Event) -> None:
         self.auth()
+
+        file_path = f"src/buses/events/storage/{topic}.json"
+
+        data: List[Any]
+
+        try:
+            with open(file_path, "r", encoding="utf8") as file:
+                data = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            data = []
+
+        data.append(event)
+
+        with open(file_path, mode="w", encoding="utf8") as file:
+            json.dump(data, file, indent=2, cls=Encoder)
 
         callbacks = self._callbacks_by_topic.get(topic)
         if callbacks is None:

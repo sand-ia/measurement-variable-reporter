@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar, Union
+from typing import Generic, TypeVar
 from uuid import UUID
 
 from src.application.shared.commands.domain.command import Command
 
 C = TypeVar("C", bound=Command)
-R = TypeVar("R", bound=Union[UUID, None])
+R = TypeVar("R", bound=UUID | None)
 
 
 class CommandHandler(Generic[C, R], ABC):

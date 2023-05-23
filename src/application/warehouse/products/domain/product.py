@@ -1,7 +1,13 @@
+from uuid import uuid4, UUID
 from typing import Tuple
-from uuid import UUID, uuid4
-from src.application.shared.entities.domain.aggregate_root import AggregateRoot
-from src.application.warehouse.products.domain.product_event import ProductCreatedEvent
+
+from src.application.warehouse.products.domain.product_event import (
+    ProductCreatedEvent,
+)
+from src.application.shared.entities.domain.aggregate_root import (
+    AggregateRoot,
+    AggregateFactory,
+)
 
 
 class Product(AggregateRoot):
@@ -10,10 +16,10 @@ class Product(AggregateRoot):
         self.stock = stock
 
 
-class ProductFactory:
+class ProductFactory(AggregateFactory):
     @staticmethod
     def create(stock: int) -> Tuple[Product, ProductCreatedEvent]:
-        uuid = uuid4()
-        product = Product(uuid, stock)
-        event = ProductCreatedEvent(uuid, product)
+        product_uuid = uuid4()
+        product = Product(product_uuid, stock)
+        event = ProductCreatedEvent(product, stock)
         return product, event
