@@ -7,7 +7,7 @@ from src.buses.events.in_memory_event_bus import Subscription, in_memory_bus
 
 
 @injectable(singleton=True)  # type: ignore
-class InMemoryBusConsumer(Consumer[Any]):
+class InMemoryEventBusConsumer(Consumer[Any]):
     # TODO: Can we use asyncio to handle async await
 
     def subscribe(self, topic: str, callback: Any) -> Any:

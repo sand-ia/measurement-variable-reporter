@@ -1,6 +1,7 @@
+from dataclasses import dataclass
 from uuid import UUID
 
 
+@dataclass
 class Entity:
-    def __init__(self, uuid: UUID) -> None:
-        self.uuid = uuid
+    uuid: UUID

@@ -1,0 +1,14 @@
+[
+  {
+    "aggregate_uuid": "60beb0cc-9830-43ea-9211-ed9dd3a918d2",
+    "event_uuid": "5b88a087-7804-44b7-9733-ec17b97a6376",
+    "created_at": "2023-05-24T04:54:34.313440",
+    "stock": 50
+  },
+  {
+    "aggregate_uuid": "e480d1f5-86a1-4b23-a215-84ce597410a7",
+    "event_uuid": "8d88d02a-8297-45c2-8b8e-ad1922554979",
+    "created_at": "2023-05-24T05:26:56.777836",
+    "stock": 50
+  }
+]
