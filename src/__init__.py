@@ -6,7 +6,7 @@ from injectable import autowired, Autowired
 from src.application.shared.queries.domain.query import Query
 from src.application.shared.queries.domain.query_handler import QueryHandler
 
-from src.buses.events.in_memory_event_bus import in_memory_bus
+from src.buses.events.in_memory_event_bus import in_memory_event_bus
 from src.infrastructure.repositories.in_memory_db import in_memory_db
 from src.interface.graphql.schema import schema
 
@@ -49,7 +49,7 @@ def load_in_memory_db():
 def load_in_memory_broker():
     try:
         # TODO: Get user and pass from .env
-        in_memory_bus.connect(user="sandia", password="sandia")
+        in_memory_event_bus.connect(user="sandia", password="sandia")
     except PermissionError as error:
         # TODO: handle error
         print(error)

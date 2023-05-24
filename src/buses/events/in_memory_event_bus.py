@@ -9,23 +9,14 @@ from inspect import isclass
 from src.application.shared.events.domain.event import Event
 
 
+class BusEvent:
+    def __init__(self, event: Event) -> None:
+        self.__dict__.update(event.__dict__)
+        self.event = event.__class__
+
+
 Callback: TypeAlias = Callable[[Any], None]
 Callbacks: TypeAlias = List[Callback]
-
-
-class Encoder(json.JSONEncoder):
-    def default(self, o: Any):
-        if isinstance(o, UUID):
-            return str(o)
-        if isinstance(o, datetime):
-            return o.isoformat()
-        if isinstance(o, Enum):
-            return o.value
-        if isclass(o):
-            return o.__name__
-        if o.__class__ is not None:
-            return o.__dict__
-        return super().default(o)
 
 
 class Subscription:
@@ -40,6 +31,20 @@ class Subscription:
 
 
 class InMemoryEventBus:
+    class Encoder(json.JSONEncoder):
+        def default(self, o: Any):
+            if isinstance(o, UUID):
+                return str(o)
+            if isinstance(o, datetime):
+                return o.isoformat()
+            if isinstance(o, Enum):
+                return o.value
+            if isclass(o):
+                return o.__name__
+            if o.__class__ is not None:
+                return o.__dict__
+            return super().default(o)
+
     def __init__(self, user: str, password: str) -> None:
         self._user: str = user
         self._password: str = password
@@ -67,7 +72,7 @@ class InMemoryEventBus:
         subscription = Subscription(callback, callbacks)
         return subscription
 
-    def publish(self, topic: str, event: Event) -> None:
+    def publish(self, topic: str, event: BusEvent) -> None:
         self.auth()
 
         file_path = f"src/buses/events/storage/{topic}.json"
@@ -83,7 +88,7 @@ class InMemoryEventBus:
         data.append(event)
 
         with open(file_path, mode="w", encoding="utf8") as file:
-            json.dump(data, file, indent=2, cls=Encoder)
+            json.dump(data, file, indent=2, cls=InMemoryEventBus.Encoder)
 
         callbacks = self._callbacks_by_topic.get(topic)
         if callbacks is None:
@@ -93,4 +98,4 @@ class InMemoryEventBus:
 
 
 # TODO: Get user and pass from .env
-in_memory_bus = InMemoryEventBus("sandia", "sandia")
+in_memory_event_bus = InMemoryEventBus("sandia", "sandia")

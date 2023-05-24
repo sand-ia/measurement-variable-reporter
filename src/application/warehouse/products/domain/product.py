@@ -3,15 +3,15 @@ from datetime import datetime
 from uuid import uuid4
 from typing import Tuple, Type
 
+from src.application.shared.events.domain.event import Event
 from src.application.shared.entities.domain.bounded_context import (
     BoundedContext,
     Warehouse,
 )
-from src.application.shared.events.domain.event import Event
 from src.application.shared.entities.domain.aggregate_root import (
     AggregateRoot,
-    AggregateFactory,
 )
+from src.application.shared.entities.domain.aggregate_factory import AggregateFactory
 
 
 @dataclass

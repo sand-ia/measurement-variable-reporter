@@ -1,14 +1,23 @@
 [
   {
-    "aggregate_uuid": "60beb0cc-9830-43ea-9211-ed9dd3a918d2",
-    "event_uuid": "5b88a087-7804-44b7-9733-ec17b97a6376",
-    "created_at": "2023-05-24T04:54:34.313440",
-    "stock": 50
+    "aggregate_uuid": "370ee766-051a-4d42-816a-681f1b79fdff",
+    "event_uuid": "6b23281a-37ac-47b1-8215-ea8ed3c33286",
+    "created_at": "2023-05-24T06:06:52.901712",
+    "stock": 50,
+    "event": "ProductCreatedEvent"
   },
   {
-    "aggregate_uuid": "e480d1f5-86a1-4b23-a215-84ce597410a7",
-    "event_uuid": "8d88d02a-8297-45c2-8b8e-ad1922554979",
-    "created_at": "2023-05-24T05:26:56.777836",
-    "stock": 50
+    "aggregate_uuid": "5eab58da-c95a-470c-9f40-c87e5c771062",
+    "event_uuid": "b904adc2-ef46-4428-a1e3-9a61ea6a36f4",
+    "created_at": "2023-05-24T06:10:36.780888",
+    "stock": 50,
+    "event": "ProductCreatedEvent"
+  },
+  {
+    "aggregate_uuid": "561ffbce-96ca-423c-af53-3d6454a0a498",
+    "event_uuid": "4350bedd-309e-4205-a242-6c0b93edc564",
+    "created_at": "2023-05-24T06:10:43.823210",
+    "stock": 30,
+    "event": "ProductCreatedEvent"
   }
 ]

@@ -11,7 +11,3 @@ class AggregateRoot(Entity, ABC):
     @abstractmethod
     def get_bounded_context() -> Type[BoundedContext]:
         raise NotImplementedError
-
-
-class AggregateFactory:
-    pass
