@@ -30,4 +30,8 @@ class CreateProductCommandHandler(CommandHandler[CreateProductCommand, UUID]):
         product, event = ProductFactory.create(command.stock)
         self._producer.publish(event)
         self._product_repository.save(product)
+
+        event = product.say_hi()
+        self._producer.publish(event)
+
         return product.uuid

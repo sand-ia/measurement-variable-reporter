@@ -1,0 +1,9 @@
+[
+  {
+    "aggregate_root_uuid": "41f42030-9b70-4929-8265-9a1537dc6a8e",
+    "event_uuid": "33ba3982-3711-44a2-9f8d-493e3c9b3078",
+    "created_at": "2023-05-24T17:00:04.347090",
+    "stock": 30,
+    "event": "ProductCreatedEvent"
+  }
+]

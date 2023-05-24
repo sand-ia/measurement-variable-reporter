@@ -1,22 +1,41 @@
 from dataclasses import dataclass
 from datetime import datetime
 from uuid import uuid4
-from typing import Tuple, Type
+from typing import Tuple
 
-from src.application.shared.events.domain.event import Event
-from src.application.shared.entities.domain.bounded_context import BoundedContext
-from src.application.shared.entities.domain.aggregate_root import (
-    AggregateRoot,
-)
-from src.application.warehouse.context import Warehouse
+from src.application.shared.events.domain.event import Event, set_aggregate
+from src.application.warehouse.context import WarehouseAggregateRoot
 from src.application.shared.entities.domain.aggregate_factory import AggregateFactory
+from src.buses.events.topics import topify
 
 
+@topify
 @dataclass
-class ProductEvent(Event):
+class Product(WarehouseAggregateRoot):
+    stock: int
+
+    def say_hi(self) -> Event:
+        print("Hi! 👋")
+        event_uuid = uuid4()
+        created_at = datetime.utcnow()
+        event = ProductSayHiEvent(self.uuid, event_uuid, created_at)
+        return event
+
+
+class ProductFactory(AggregateFactory):
     @staticmethod
-    def get_aggregate_root() -> Type[AggregateRoot]:
-        return Product
+    def create(stock: int) -> Tuple[Product, Event]:
+        product_uuid = uuid4()
+        product = Product(product_uuid, stock)
+        event_uuid = uuid4()
+        created_at = datetime.utcnow()
+        event = ProductCreatedEvent(product_uuid, event_uuid, created_at, stock)
+        return product, event
+
+
+@set_aggregate(Product)
+class ProductEvent(Event):
+    pass
 
 
 @dataclass
@@ -25,20 +44,5 @@ class ProductCreatedEvent(ProductEvent):
 
 
 @dataclass
-class Product(AggregateRoot):
-    stock: int
-
-    @staticmethod
-    def get_bounded_context() -> Type[BoundedContext]:
-        return Warehouse
-
-
-class ProductFactory(AggregateFactory):
-    @staticmethod
-    def create(stock: int) -> Tuple[Product, ProductCreatedEvent]:
-        product_uuid = uuid4()
-        product = Product(product_uuid, stock)
-        event_uuid = uuid4()
-        created_at = datetime.utcnow()
-        event = ProductCreatedEvent(product_uuid, event_uuid, created_at, stock)
-        return product, event
+class ProductSayHiEvent(ProductEvent):
+    pass

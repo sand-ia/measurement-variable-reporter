@@ -1,9 +1,7 @@
-from typing import Dict, Type
+from typing import Dict, Type, TypeVar
 
 from src.application.shared.entities.domain.aggregate_root import AggregateRoot
-from src.application.warehouse.products.domain.product import (
-    Product as WarehouseProduct,
-)
+
 
 ORGANISATION = "sandia"
 SERVICE = "demo"
@@ -17,6 +15,11 @@ def _topic_generator(aggregate_root: Type[AggregateRoot]):
     )
 
 
-TOPIC: Dict[Type[AggregateRoot], str] = {
-    WarehouseProduct: _topic_generator(WarehouseProduct)
-}
+TOPIC: Dict[Type[AggregateRoot], str] = {}
+
+T = TypeVar("T", bound=Type[AggregateRoot])
+
+
+def topify(aggregate_root: T) -> T:
+    TOPIC[aggregate_root] = _topic_generator(aggregate_root)
+    return aggregate_root

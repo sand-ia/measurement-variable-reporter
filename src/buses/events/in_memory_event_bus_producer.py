@@ -9,7 +9,7 @@ from src.buses.events.topics import TOPIC
 @injectable(singleton=True)  # type: ignore
 class InMemoryEventBusProducer(Producer):
     def publish(self, event: Event) -> None:
-        aggregate_root = event.get_aggregate_root()
+        aggregate_root = event.__class__.get_aggregate_root()
         topic = TOPIC.get(aggregate_root)
         if topic is None:
             raise NotImplementedError(
