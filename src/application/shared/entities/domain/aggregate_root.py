@@ -1,10 +1,8 @@
-from dataclasses import dataclass
 from typing import Callable, Type, TypeVar
 from src.application.shared.entities.domain.bounded_context import BoundedContext
 from src.application.shared.entities.domain.entity import Entity
 
 
-@dataclass
 class AggregateRoot(Entity):
     @staticmethod
     def get_bounded_context() -> Type[BoundedContext]:  # type: ignore

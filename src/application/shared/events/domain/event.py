@@ -1,16 +1,21 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Callable, Type, TypeVar
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from src.application.shared.entities.domain.aggregate_root import AggregateRoot
 
 
-@dataclass
 class Event:
-    aggregate_root_uuid: UUID
-    event_uuid: UUID
-    created_at: datetime
+    def __init__(
+        self,
+        aggregate_root_uuid: UUID,
+        event_uuid: UUID | None = None,
+        created_at: datetime | None = None,
+    ) -> None:
+        self.aggregate_root_uuid = aggregate_root_uuid
+        self.event_uuid = event_uuid if event_uuid is not None else uuid4()
+        self.created_at = created_at if created_at is not None else datetime.utcnow()
 
     @staticmethod
     def get_aggregate_root() -> Type[AggregateRoot]:  # type: ignore
