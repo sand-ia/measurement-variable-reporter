@@ -4,20 +4,18 @@ from uuid import uuid4
 from typing import Tuple, Type
 
 from src.application.shared.events.domain.event import Event
-from src.application.shared.entities.domain.bounded_context import (
-    BoundedContext,
-    Warehouse,
-)
+from src.application.shared.entities.domain.bounded_context import BoundedContext
 from src.application.shared.entities.domain.aggregate_root import (
     AggregateRoot,
 )
+from src.application.warehouse.context import Warehouse
 from src.application.shared.entities.domain.aggregate_factory import AggregateFactory
 
 
 @dataclass
 class ProductEvent(Event):
     @staticmethod
-    def get_aggregate() -> Type[AggregateRoot]:
+    def get_aggregate_root() -> Type[AggregateRoot]:
         return Product
 
 

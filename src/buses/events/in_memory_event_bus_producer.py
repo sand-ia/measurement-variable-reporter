@@ -9,11 +9,11 @@ from src.buses.events.topics import TOPIC
 @injectable(singleton=True)  # type: ignore
 class InMemoryEventBusProducer(Producer):
     def publish(self, event: Event) -> None:
-        aggregate = event.__class__.get_aggregate()
-        topic = TOPIC.get(aggregate)
+        aggregate_root = event.get_aggregate_root()
+        topic = TOPIC.get(aggregate_root)
         if topic is None:
             raise NotImplementedError(
-                f"InMemoryEventBusProducer: No topic found for this aggregate {aggregate}"
+                f"InMemoryEventBusProducer: No topic found for this aggregate root {aggregate_root}"
             )
         bus_event = BusEvent(event)
         in_memory_event_bus.publish(topic, bus_event)
