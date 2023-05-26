@@ -20,7 +20,7 @@ class InMemoryDBProductRepository(ProductRepository):
 
     def get(self, uuid: UUID) -> Product:
         document = in_memory_db.get("products", str(uuid))
-        product = Product(UUID(document["uuid"]), document["stock"])
+        product = Product(document["stock"], UUID(document["uuid"]))
         return product
 
     def update(self, uuid: UUID, entity: Product) -> None:

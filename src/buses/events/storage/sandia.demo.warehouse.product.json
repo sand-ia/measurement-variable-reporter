@@ -24,5 +24,31 @@
     "uuid": "e28c588f-09ec-49ea-9679-aa5cc1ebac32",
     "name": "ProductSayHiEvent",
     "created_at": "2023-05-26T23:23:46.766803"
+  },
+  {
+    "aggregate_root_uuid": "20095fd0-c9b7-4a47-b8ca-61539eb066cc",
+    "uuid": "1298cc24-2240-4135-a653-06a4f569d7c6",
+    "name": "ProductCreatedEvent",
+    "created_at": "2023-05-26T23:41:24.261972",
+    "stock": 10
+  },
+  {
+    "aggregate_root_uuid": "20095fd0-c9b7-4a47-b8ca-61539eb066cc",
+    "uuid": "857b19c3-e908-4f90-bda1-1d69e19913c8",
+    "name": "ProductSayHiEvent",
+    "created_at": "2023-05-26T23:41:24.264731"
+  },
+  {
+    "aggregate_root_uuid": "88d7232f-2188-49ac-9ee6-67f638aacd84",
+    "uuid": "e5e31f75-78a7-4928-9342-b869edffe6bb",
+    "name": "ProductCreatedEvent",
+    "created_at": "2023-05-26T23:46:20.307590",
+    "stock": 10
+  },
+  {
+    "aggregate_root_uuid": "88d7232f-2188-49ac-9ee6-67f638aacd84",
+    "uuid": "c84d401a-caa4-4daa-b251-dd54c86dd169",
+    "name": "ProductSayHiEvent",
+    "created_at": "2023-05-26T23:46:20.310563"
   }
 ]
