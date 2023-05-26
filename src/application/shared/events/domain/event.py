@@ -13,8 +13,8 @@ class Event:
         created_at: datetime | None = None,
     ) -> None:
         self.aggregate_root_uuid = aggregate_root_uuid
-        self.event_uuid = event_uuid if event_uuid is not None else uuid4()
-        self.event_name = self.__class__.__name__
+        self.uuid = event_uuid if event_uuid is not None else uuid4()
+        self.name = self.__class__.__name__
         self.created_at = created_at if created_at is not None else datetime.utcnow()
 
     @staticmethod
