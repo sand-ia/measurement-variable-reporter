@@ -1,3 +1,4 @@
+from typing import Type, TypeAlias
 from injectable import injectable, autowired, Autowired
 
 from src.application.shared.queries.domain.query_handler import QueryHandler
@@ -11,7 +12,10 @@ from src.application.warehouse.products.ports.product_respository import (
     ProductRepository,
 )
 
-AutowiredProductRepository = Autowired(ProductRepository)
+DefaultProductRepository: TypeAlias = ProductRepository
+AutowiredProductRepository: Type[DefaultProductRepository] = Autowired(
+    DefaultProductRepository
+)  # type: ignore
 
 
 @injectable(singleton=True)  # type: ignore

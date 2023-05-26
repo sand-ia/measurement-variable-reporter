@@ -1,6 +1,6 @@
+import json
 from datetime import datetime
 from enum import Enum
-import json
 from uuid import UUID
 from threading import Thread
 from typing import Any, Callable, Dict, List, TypeAlias
@@ -9,13 +9,7 @@ from inspect import isclass
 from src.application.shared.events.domain.event import Event
 
 
-class BusEvent:
-    def __init__(self, event: Event) -> None:
-        self.__dict__.update(event.__dict__)
-        self.event = event.__class__
-
-
-Callback: TypeAlias = Callable[[Any], None]
+Callback: TypeAlias = Callable[[Event], None]
 Callbacks: TypeAlias = List[Callback]
 
 
@@ -72,12 +66,12 @@ class InMemoryEventBus:
         subscription = Subscription(callback, callbacks)
         return subscription
 
-    def publish(self, topic: str, event: BusEvent) -> None:
+    def publish(self, topic: str, event: Event) -> None:
         self.auth()
 
         file_path = f"src/buses/events/storage/{topic}.json"
 
-        data: List[Any]
+        data: List[Event]
 
         try:
             with open(file_path, "r", encoding="utf8") as file:

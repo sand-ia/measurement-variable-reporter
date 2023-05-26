@@ -1,4 +1,4 @@
-from typing import Dict, List, TypeAlias
+from typing import Dict, List, Type, TypeAlias
 from inspect import signature
 from uuid import UUID
 from injectable import Autowired, autowired, injectable
@@ -9,7 +9,7 @@ from src.application.shared.commands.domain.command_handler import CommandHandle
 
 DefaultCommandHandler: TypeAlias = CommandHandler[Command, UUID | None]
 CommandHandlers: TypeAlias = List[DefaultCommandHandler]
-AutowiredCommandHandlers = Autowired(CommandHandlers)
+AutowiredCommandHandlers: Type[CommandHandlers] = Autowired(CommandHandlers)  # type: ignore
 
 
 @injectable(singleton=True)  # type: ignore

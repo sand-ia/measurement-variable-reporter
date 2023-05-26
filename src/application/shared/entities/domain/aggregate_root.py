@@ -5,8 +5,8 @@ from src.application.shared.entities.domain.entity import Entity
 
 class AggregateRoot(Entity):
     @staticmethod
-    def get_bounded_context() -> Type[BoundedContext]:  # type: ignore
-        pass
+    def get_bounded_context() -> Type[BoundedContext]:
+        return BoundedContext
 
 
 T = TypeVar("T", bound=Type[AggregateRoot])

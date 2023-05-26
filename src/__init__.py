@@ -1,12 +1,10 @@
-from typing import List, Type, TypeAlias
 from flask import Flask
 from flask_graphql import GraphQLView
 from injectable import load_injection_container
-from injectable import autowired, Autowired
-from src.application.shared.queries.domain.query import Query
-from src.application.shared.queries.domain.query_handler import QueryHandler
 
 from src.buses.events.in_memory_event_bus import in_memory_event_bus
+from src.buses.events.in_memory_event_bus_consumer import InMemoryEventBusConsumer
+
 from src.infrastructure.repositories.in_memory_db import in_memory_db
 from src.interface.graphql.schema import schema
 
@@ -17,6 +15,7 @@ def create_app() -> Flask:
     load_injection_container()
     load_presentation(app)
     load_infraestructure(app)
+    load_buses()
     return app
 
 
@@ -33,7 +32,6 @@ def load_graphql(app: Flask):
 def load_infraestructure(_: Flask) -> None:
     # TODO: load_in_memory_database.
     load_in_memory_db()
-    load_in_memory_broker()
     # TODO: load_logger
 
 
@@ -46,7 +44,12 @@ def load_in_memory_db():
         print(error)
 
 
-def load_in_memory_broker():
+def load_buses():
+    load_in_memory_event_bus()
+    load_event_bus_consumers()
+
+
+def load_in_memory_event_bus():
     try:
         # TODO: Get user and pass from .env
         in_memory_event_bus.connect(user="sandia", password="sandia")
@@ -54,15 +57,6 @@ def load_in_memory_broker():
         # TODO: handle error
         print(error)
 
-    # TODO: Start Consumers
-    # instantiate_query_consumers()
 
-
-# BaseQueryHandler: TypeAlias = QueryHandler[Query]
-# QueryHandlers: TypeAlias = List[BaseQueryHandler]
-# AutowiredQueryHandlers: Type[QueryHandlers] = Autowired(QueryHandlers)
-
-
-# @autowired
-# def instantiate_query_consumers(_: AutowiredQueryHandlers) -> None:
-#      pass
+def load_event_bus_consumers():
+    InMemoryEventBusConsumer()  # type: ignore pylint: disable=E1120

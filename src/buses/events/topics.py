@@ -15,11 +15,11 @@ def _topic_generator(aggregate_root: Type[AggregateRoot]):
     )
 
 
-TOPIC: Dict[Type[AggregateRoot], str] = {}
+topics: Dict[Type[AggregateRoot], str] = {}
 
 T = TypeVar("T", bound=Type[AggregateRoot])
 
 
 def topify(aggregate_root: T) -> T:
-    TOPIC[aggregate_root] = _topic_generator(aggregate_root)
+    topics[aggregate_root] = _topic_generator(aggregate_root)
     return aggregate_root

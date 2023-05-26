@@ -1,31 +1,21 @@
-from typing import Any
-from injectable import injectable
-from src.application.shared.events.ports.consumer import Consumer
+from typing import List, TypeAlias, Type
+from injectable import autowired, Autowired
+
+from src.application.shared.events.domain.event_handler import EventHandler
+from src.buses.events.topics import topics
+from src.buses.events.in_memory_event_bus import in_memory_event_bus
+
+DefaultEventHandler: TypeAlias = EventHandler
+EventHandlers: TypeAlias = List[DefaultEventHandler]
+AutowiredEventHandlers: Type[EventHandlers] = Autowired(EventHandlers)  # type: ignore
 
 
-from src.buses.events.in_memory_event_bus import Subscription, in_memory_event_bus
-
-
-@injectable(singleton=True)  # type: ignore
-class InMemoryEventBusConsumer(Consumer[Any]):
-    # TODO: Can we use asyncio to handle async await
-
-    def subscribe(self, topic: str, callback: Any) -> Any:
-        subscription = in_memory_event_bus.subscribe(topic, callback)
-        return subscription
-
-    def subscribe_and_wait(self, topic: str) -> Any:
-        promise: Any = None
-        subscription: Subscription | None = None
-
-        def complete_promise(response: Any) -> None:
-            nonlocal promise
-            promise = response
-            if subscription is not None:
-                subscription.unsubscribe()
-
-        subscription = self.subscribe(topic, complete_promise)
-
-        while True:
-            if promise is not None:
-                return promise
+class InMemoryEventBusConsumer:
+    @autowired
+    def __init__(self, event_handlers: AutowiredEventHandlers) -> None:
+        for event_handler in event_handlers:
+            aggregate_root = event_handler.__class__.get_aggregate_root()
+            topic = topics.get(aggregate_root)
+            if topic is not None:
+                handle = event_handler.handle
+                in_memory_event_bus.subscribe(topic, handle)

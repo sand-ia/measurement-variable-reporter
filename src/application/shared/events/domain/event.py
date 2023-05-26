@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Callable, Type, TypeVar
 from uuid import UUID, uuid4
@@ -15,11 +14,12 @@ class Event:
     ) -> None:
         self.aggregate_root_uuid = aggregate_root_uuid
         self.event_uuid = event_uuid if event_uuid is not None else uuid4()
+        self.event_name = self.__class__.__name__
         self.created_at = created_at if created_at is not None else datetime.utcnow()
 
     @staticmethod
-    def get_aggregate_root() -> Type[AggregateRoot]:  # type: ignore
-        pass
+    def get_aggregate_root() -> Type[AggregateRoot]:
+        return AggregateRoot
 
 
 T = TypeVar("T", bound=Type[Event])

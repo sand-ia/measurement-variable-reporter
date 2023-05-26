@@ -1,3 +1,4 @@
+from typing import Type, TypeAlias
 from uuid import UUID
 from injectable import injectable, autowired, Autowired
 
@@ -11,8 +12,13 @@ from src.application.warehouse.products.ports.product_respository import (
     ProductRepository,
 )
 
-AutowiredProducer = Autowired(Producer)
-AutowiredProductRepository = Autowired(ProductRepository)
+DefaultProducer: TypeAlias = Producer
+AutowiredProducer: Type[DefaultProducer] = Autowired(DefaultProducer)  # type: ignore
+
+DefaultProductRepository: TypeAlias = ProductRepository
+AutowiredProductRepository: Type[DefaultProductRepository] = Autowired(
+    DefaultProductRepository
+)  # type: ignore
 
 
 @injectable(singleton=True)  # type: ignore

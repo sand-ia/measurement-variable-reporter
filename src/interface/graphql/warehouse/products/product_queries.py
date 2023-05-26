@@ -1,3 +1,4 @@
+from typing import Type, TypeAlias
 from uuid import UUID
 from injectable import autowired, Autowired
 from graphene import (
@@ -14,8 +15,8 @@ from src.application.warehouse.products.services.get_product.get_product_query i
     GetProductQuery,
 )
 
-
-AutowiredQueryBus = Autowired(QueryBus)
+DefaultQueryBus: TypeAlias = QueryBus
+AutowiredQueryBus: Type[DefaultQueryBus] = Autowired(DefaultQueryBus)  # type: ignore
 
 
 class GetProductInput(ID):

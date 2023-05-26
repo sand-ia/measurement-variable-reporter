@@ -1,3 +1,4 @@
+from typing import Type, TypeAlias
 from uuid import UUID
 from injectable import autowired, Autowired
 from graphene import (
@@ -14,8 +15,8 @@ from src.application.warehouse.products.services.create_product.create_product_c
     CreateProductCommand,
 )
 
-
-AutowiredCommandBus = Autowired(CommandBus)
+DefaultCommandBus: TypeAlias = CommandBus
+AutowiredCommandBus: Type[DefaultCommandBus] = Autowired(DefaultCommandBus)  # type: ignore
 
 
 class CreateProductInput(InputObjectType):

@@ -1,4 +1,4 @@
-from typing import Dict, List, TypeAlias
+from typing import Dict, List, Type, TypeAlias
 from inspect import signature
 from injectable import Autowired, autowired, injectable
 from src.application.shared.queries.domain.query import Query
@@ -8,7 +8,7 @@ from src.application.shared.queries.domain.query_handler import QueryHandler
 
 DefaultQueryHandler: TypeAlias = QueryHandler[Query, Response]
 QueryHandlers: TypeAlias = List[DefaultQueryHandler]
-AutowiredQueryHandlers = Autowired(QueryHandlers)
+AutowiredQueryHandlers: Type[QueryHandlers] = Autowired(QueryHandlers)  # type: ignore
 
 
 @injectable(singleton=True)  # type: ignore
