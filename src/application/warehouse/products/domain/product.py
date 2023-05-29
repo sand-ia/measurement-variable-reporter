@@ -14,11 +14,16 @@ class Product(WarehouseAggregateRoot):
         self.name = name
         self.stock = stock
 
+    def receive(self, amount: int) -> Event:
+        self.stock += amount
+        event = ProductReceivedEvent(self.uuid, amount)
+        return event
+
     def ship(self, amount: int) -> Event:
         if self.stock < amount:
             raise Exception(f"Not enought stock to ship product {str(self.uuid)}")
         self.stock -= amount
-        event = ProductShipEvent(self)
+        event = ProductShippedEvent(self.uuid, amount)
         return event
 
 
@@ -46,12 +51,25 @@ class ProductCreatedEvent(ProductEvent):
         self.product = product
 
 
-class ProductShipEvent(ProductEvent):
+class ProductReceivedEvent(ProductEvent):
     def __init__(
         self,
-        product: Product,
+        product_uuid: UUID,
+        amount: int,
         event_uuid: UUID | None = None,
         created_at: datetime | None = None,
     ) -> None:
-        super().__init__(product.uuid, event_uuid, created_at)
-        self.new_stock = product.stock
+        super().__init__(product_uuid, event_uuid, created_at)
+        self.amount = amount
+
+
+class ProductShippedEvent(ProductEvent):
+    def __init__(
+        self,
+        product_uuid: UUID,
+        amount: int,
+        event_uuid: UUID | None = None,
+        created_at: datetime | None = None,
+    ) -> None:
+        super().__init__(product_uuid, event_uuid, created_at)
+        self.amount = amount

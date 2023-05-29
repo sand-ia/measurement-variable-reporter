@@ -1,12 +1,7 @@
 [
   {
-    "uuid": "a3fc693a-7468-421d-8a33-dc55fbab1a69",
+    "uuid": "027d8282-3269-4e82-8131-683b733fc462",
     "name": "test",
-    "stock": 5
-  },
-  {
-    "uuid": "a868aba6-b29f-42c3-ae3c-fc3be9a6f21f",
-    "name": "test",
-    "stock": 5
+    "stock": 35
   }
 ]

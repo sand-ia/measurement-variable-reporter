@@ -8,7 +8,8 @@ from src.application.shared.events.domain.event_handler import (
 from src.application.warehouse.products.domain.product import (
     Product,
     ProductCreatedEvent,
-    ProductShipEvent,
+    ProductReceivedEvent,
+    ProductShippedEvent,
 )
 from src.application.warehouse.products.ports.product_respository import (
     ProductRepository,
@@ -28,7 +29,8 @@ class ProductEventHandler(EventHandler):
         self._product_repository = product_repository
         self.switcher = {
             ProductCreatedEvent.__name__: self.handle_product_create_event,
-            ProductShipEvent.__name__: self.handle_say_hi_event,
+            ProductReceivedEvent.__name__: self.handle_product_received_event,
+            ProductShippedEvent.__name__: self.handle_product_shipped_event,
         }
 
     def handle(self, event: Any) -> None:
@@ -45,5 +47,8 @@ class ProductEventHandler(EventHandler):
     def handle_product_create_event(self, event: Any):
         print(f"Consumer[Product]: Event match with type {event.name}")
 
-    def handle_say_hi_event(self, event: Any):
+    def handle_product_received_event(self, event: Any):
+        print(f"Consumer[Product]: Event match with type {event.name}")
+
+    def handle_product_shipped_event(self, event: Any):
         print(f"Consumer[Product]: Event match with type {event.name}")

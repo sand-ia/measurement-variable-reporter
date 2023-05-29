@@ -16,6 +16,9 @@ from src.application.shared.commands.ports.command_bus import CommandBus
 from src.application.warehouse.products.services.create_product.create_product_command import (
     CreateProductCommand,
 )
+from src.application.warehouse.products.services.receive_product.receive_product_command import (
+    ReceiveProductCommand,
+)
 from src.application.warehouse.products.services.ship_product.ship_product_command import (
     ShipProductCommand,
 )
@@ -31,6 +34,7 @@ class CreateProductInput(InputObjectType):
 
 class ProductCommands(ObjectType):
     create_product = Field(ID, product=CreateProductInput())
+    receive_product = Field(Boolean, uuid=ID(), amount=Int())
     ship_product = Field(Boolean, uuid=ID(), amount=Int())
 
     @staticmethod
@@ -46,6 +50,19 @@ class ProductCommands(ObjectType):
         if not isinstance(uuid, UUID):
             raise Exception
         return uuid
+
+    @staticmethod
+    @autowired
+    def resolve_receive_product(
+        _parent: None,
+        _info: ResolveInfo,
+        uuid: UUID,
+        amount: int,
+        command_bus: AutowiredCommandBus,
+    ) -> bool:
+        receive_product_command = ReceiveProductCommand(uuid, amount)
+        command_bus.dispatch(receive_product_command)
+        return True
 
     @staticmethod
     @autowired
