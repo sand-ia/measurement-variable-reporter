@@ -6,10 +6,8 @@ from threading import Thread
 from typing import Any, Callable, Dict, List, TypeAlias
 from inspect import isclass
 
-from src.application.shared.events.domain.event import Event
 
-
-Callback: TypeAlias = Callable[[Event], None]
+Callback: TypeAlias = Callable[[Any], None]
 Callbacks: TypeAlias = List[Callback]
 
 
@@ -66,12 +64,12 @@ class InMemoryEventBus:
         subscription = Subscription(callback, callbacks)
         return subscription
 
-    def publish(self, topic: str, event: Event) -> None:
+    def publish(self, topic: str, event: Any) -> None:
         self.auth()
 
         file_path = f"src/buses/events/storage/{topic}.json"
 
-        data: List[Event]
+        data: List[Any]
 
         try:
             with open(file_path, "r", encoding="utf8") as file:

@@ -19,17 +19,13 @@ DefaultQueryBus: TypeAlias = QueryBus
 AutowiredQueryBus: Type[DefaultQueryBus] = Autowired(DefaultQueryBus)  # type: ignore
 
 
-class GetProductInput(ID):
-    pass
-
-
 class GetProductOutput(ObjectType):
     uuid = ID()
     stock = Int()
 
 
 class ProductQueries(ObjectType):
-    get_product = Field(GetProductOutput, uuid=GetProductInput())
+    get_product = Field(GetProductOutput, uuid=ID())
 
     @staticmethod
     @autowired

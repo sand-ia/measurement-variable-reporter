@@ -15,7 +15,7 @@ class Repository(Generic[T], ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, uuid: UUID, entity: T) -> None:
+    def update(self, entity: T) -> None:
         raise NotImplementedError
 
     @abstractmethod

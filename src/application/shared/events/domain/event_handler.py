@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Type, TypeVar
+from typing import Any, Callable, Type, TypeVar
 
 from src.application.shared.entities.domain.aggregate_root import AggregateRoot
-from src.application.shared.events.domain.event import Event
 
 
 class EventHandler(ABC):
     @abstractmethod
-    def handle(self, event: Event) -> None:
+    def handle(self, event: Any) -> None:
         raise NotImplementedError
 
     @staticmethod

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import List
 from uuid import UUID
 from injectable import injectable
 
@@ -12,19 +12,15 @@ from src.infrastructure.repositories.in_memory_db import in_memory_db
 @injectable(singleton=True)  # type: ignore
 class InMemoryDBProductRepository(ProductRepository):
     def save(self, entity: Product) -> None:
-        document: Dict[str, Any] = {
-            "uuid": str(entity.uuid),
-            "stock": entity.stock,
-        }
-        in_memory_db.save("products", document)
+        in_memory_db.save("products", entity.__dict__)
 
     def get(self, uuid: UUID) -> Product:
         document = in_memory_db.get("products", str(uuid))
-        product = Product(document["stock"], UUID(document["uuid"]))
+        product = Product(document["name"], document["stock"], UUID(document["uuid"]))
         return product
 
-    def update(self, uuid: UUID, entity: Product) -> None:
-        raise NotImplementedError
+    def update(self, entity: Product) -> None:
+        in_memory_db.update("products", entity.__dict__)
 
     def delete(self, uuid: UUID) -> None:
         raise NotImplementedError

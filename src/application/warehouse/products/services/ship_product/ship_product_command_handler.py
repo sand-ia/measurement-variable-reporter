@@ -4,9 +4,8 @@ from injectable import injectable, autowired, Autowired
 
 from src.application.shared.commands.domain.command_handler import CommandHandler
 from src.application.shared.events.ports.producer import Producer
-from src.application.warehouse.products.domain.product import ProductFactory
-from src.application.warehouse.products.services.create_product.create_product_command import (
-    CreateProductCommand,
+from src.application.warehouse.products.services.ship_product.ship_product_command import (
+    ShipProductCommand,
 )
 from src.application.warehouse.products.ports.product_respository import (
     ProductRepository,
@@ -22,7 +21,7 @@ AutowiredProductRepository: Type[DefaultProductRepository] = Autowired(
 
 
 @injectable(singleton=True)  # type: ignore
-class CreateProductCommandHandler(CommandHandler[CreateProductCommand, UUID]):
+class ShipProductCommandHandler(CommandHandler[ShipProductCommand, UUID]):
     @autowired
     def __init__(
         self,
@@ -32,8 +31,9 @@ class CreateProductCommandHandler(CommandHandler[CreateProductCommand, UUID]):
         self._producer = producer
         self._product_repository = product_repository
 
-    def handle(self, command: CreateProductCommand) -> UUID:
-        product, event = ProductFactory.create(command.name, command.stock)
-        self._product_repository.save(product)
+    def handle(self, command: ShipProductCommand) -> UUID:
+        product = self._product_repository.get(command.uuid)
+        event = product.ship(command.amount)
+        self._product_repository.update(product)
         self._producer.publish(event)
         return product.uuid

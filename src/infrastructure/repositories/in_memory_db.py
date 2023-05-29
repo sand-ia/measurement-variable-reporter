@@ -38,15 +38,6 @@ class InMemoryDB:
         raise PermissionError("InMemoryDB: Unauthorazed Access")
 
     def save(self, table_name: str, document: Dict[str, Any]) -> str:
-        # table = self._tables.get(table_name)
-        # if table is None:
-        #     table = []
-        #     self._tables[table_name] = table
-        # document_id = document.get("uuid")
-        # if document_id is None:
-        #     document["uuid"] = str(uuid4())
-        # table.append(document)
-
         file_path = f"src/infrastructure/repositories/storage/{table_name}.json"
         table: List[Dict[str, Any]]
 
@@ -56,9 +47,10 @@ class InMemoryDB:
         except (FileNotFoundError, json.JSONDecodeError):
             table = []
 
-        document_id = document.get("uuid")
-        if document_id is None:
+        document_uuid = document.get("uuid")
+        if document_uuid is None:
             document["uuid"] = str(uuid4())
+
         table.append(document)
 
         with open(file_path, mode="w", encoding="utf8") as file:
@@ -70,24 +62,52 @@ class InMemoryDB:
         file_path = f"src/infrastructure/repositories/storage/{table_name}.json"
         table: List[Dict[str, Any]]
 
-        with open(file_path, "r", encoding="utf8") as file:
-            table = json.load(file)
+        try:
+            with open(file_path, "r", encoding="utf8") as file:
+                table = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            raise Exception("InMemoryDB: Document not found")
 
         return table
 
-    def get(self, table_name: str, document_id: str) -> Dict[str, Any]:
+    def get(self, table_name: str, document_uuid: str) -> Dict[str, Any]:
         file_path = f"src/infrastructure/repositories/storage/{table_name}.json"
         table: List[Dict[str, Any]]
 
-        with open(file_path, "r", encoding="utf8") as file:
-            table = json.load(file)
+        try:
+            with open(file_path, "r", encoding="utf8") as file:
+                table = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            raise Exception("InMemoryDB: Document not found")
 
         for document in table:
-            if document["uuid"] == document_id:
+            if document["uuid"] == document_uuid:
                 return document
 
         # TODO: raise correct exception.
         raise Exception("InMemoryDB: Document not found")
+
+    def update(self, table_name: str, new_document: Dict[str, Any]) -> None:
+        document_uuid = new_document.get("uuid")
+        if document_uuid is None:
+            raise TypeError("InMemoryDB: Document doesn't have a uuid")
+
+        file_path = f"src/infrastructure/repositories/storage/{table_name}.json"
+        table: List[Dict[str, Any]]
+
+        try:
+            with open(file_path, "r", encoding="utf8") as file:
+                table = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            raise Exception("InMemoryDB: Document not found")
+
+        for document in table:
+            if document["uuid"] == str(document_uuid):
+                document.update(**new_document)
+                break
+
+        with open(file_path, mode="w", encoding="utf8") as file:
+            json.dump(table, file, indent=2, cls=InMemoryDB.Encoder)
 
 
 # TODO: Get user and pass from .env
