@@ -12,6 +12,9 @@ from src.application.warehouse.products.domain.product import (
     ProductReceivedEvent,
     ProductShippedEvent,
 )
+from src.application.warehouse.products.projections.product_current_state import (
+    ProductCurrentState,
+)
 from src.application.warehouse.products.ports.product_query_respository import (
     ProductQueryRepository,
 )
@@ -61,7 +64,7 @@ class ProductEventHandler(EventHandler):
 
     def handle_product_create_event(self, event: Dict[str, Any]):
         product_dict: Dict[str, Any] = event["product"]
-        product = Product(**product_dict)
+        product = ProductCurrentState(**product_dict)
         self._product_command_repository.save(product)
 
     def handle_product_received_event(self, event: Dict[str, Any]):

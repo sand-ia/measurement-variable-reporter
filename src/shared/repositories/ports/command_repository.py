@@ -2,7 +2,9 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict, Generic, TypeVar
 from uuid import UUID
 
-T = TypeVar("T")
+from src.shared.entities.domain.projection import Projection
+
+T = TypeVar("T", bound=Projection)
 
 
 class CommandRepository(Generic[T], ABC):

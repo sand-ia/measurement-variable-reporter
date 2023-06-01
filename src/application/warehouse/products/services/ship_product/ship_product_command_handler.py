@@ -1,7 +1,7 @@
 from typing import Type, TypeAlias
-from uuid import UUID
 from injectable import injectable, autowired, Autowired
 
+from src.application.warehouse.products.domain.product import Product
 from src.shared.commands.domain.command_handler import CommandHandler
 from src.shared.events.ports.producer import Producer
 from src.application.warehouse.products.services.ship_product.ship_product_command import (
@@ -32,6 +32,11 @@ class ShipProductCommandHandler(CommandHandler[ShipProductCommand, None]):
         self._product_query_repository = product_query_repository
 
     def handle(self, command: ShipProductCommand) -> None:
-        product = self._product_query_repository.get(command.uuid)
+        product_current_state = self._product_query_repository.get(command.uuid)
+        product = Product(
+            product_current_state.name,
+            product_current_state.stock,
+            product_current_state.uuid,
+        )
         event = product.ship(command.amount)
         self._producer.publish(event)

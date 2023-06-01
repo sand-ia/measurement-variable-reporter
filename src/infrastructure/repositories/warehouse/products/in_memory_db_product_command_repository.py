@@ -3,7 +3,9 @@ from typing import Any, Dict
 from uuid import UUID
 from injectable import injectable
 
-from src.application.warehouse.products.domain.product import Product
+from src.application.warehouse.products.projections.product_current_state import (
+    ProductCurrentState,
+)
 from src.application.warehouse.products.ports.product_command_repository import (
     ProductCommandRepository,
 )
@@ -13,7 +15,7 @@ from src.shared.utils.json_encoder import Encoder
 
 @injectable(singleton=True)  # type: ignore
 class InMemoryDBProductCommandRepository(ProductCommandRepository):
-    def save(self, entity: Product) -> None:
+    def save(self, entity: ProductCurrentState) -> None:
         entity_json: str = json.dumps(entity, cls=Encoder)
         in_memory_db.save("products", entity_json)
 

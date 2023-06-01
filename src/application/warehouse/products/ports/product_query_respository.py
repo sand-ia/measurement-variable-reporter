@@ -1,6 +1,8 @@
 from src.shared.repositories.ports.query_repository import QueryRepository
-from src.application.warehouse.products.domain.product import Product
+from src.application.warehouse.products.projections.product_current_state import (
+    ProductCurrentState,
+)
 
 
-class ProductQueryRepository(QueryRepository[Product]):
+class ProductQueryRepository(QueryRepository[ProductCurrentState]):
     pass
