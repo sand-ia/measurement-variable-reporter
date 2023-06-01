@@ -1,7 +1,7 @@
 from typing import Type, TypeAlias
 from injectable import injectable, autowired, Autowired
 
-from src.application.shared.queries.domain.query_handler import QueryHandler
+from src.shared.queries.domain.query_handler import QueryHandler
 from src.application.warehouse.products.services.get_product.get_product_query import (
     GetProductQuery,
 )

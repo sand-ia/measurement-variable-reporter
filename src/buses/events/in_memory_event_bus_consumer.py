@@ -1,7 +1,7 @@
 from typing import List, TypeAlias, Type
 from injectable import autowired, Autowired
 
-from src.application.shared.events.domain.event_handler import EventHandler
+from src.shared.events.domain.event_handler import EventHandler
 from src.buses.events.topics import topics
 from src.buses.events.in_memory_event_bus import in_memory_event_bus
 

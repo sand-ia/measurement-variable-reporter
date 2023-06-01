@@ -12,7 +12,7 @@ from graphene import (
     ResolveInfo,
 )
 
-from src.application.shared.commands.ports.command_bus import CommandBus
+from src.shared.commands.ports.command_bus import CommandBus
 from src.application.warehouse.products.services.create_product.create_product_command import (
     CreateProductCommand,
 )

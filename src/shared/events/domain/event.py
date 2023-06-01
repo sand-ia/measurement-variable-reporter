@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Callable, Type, TypeVar
 from uuid import UUID, uuid4
 
-from src.application.shared.entities.domain.aggregate_root import AggregateRoot
+from src.shared.entities.domain.aggregate_root import AggregateRoot
 
 
 class Event:

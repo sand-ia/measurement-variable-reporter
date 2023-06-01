@@ -1,10 +1,10 @@
 from typing import Dict, List, Type, TypeAlias
 from inspect import signature
 from injectable import Autowired, autowired, injectable
-from src.application.shared.queries.domain.query import Query
-from src.application.shared.queries.domain.response import Response
-from src.application.shared.queries.ports.query_bus import QueryBus
-from src.application.shared.queries.domain.query_handler import QueryHandler
+from src.shared.queries.domain.query import Query
+from src.shared.queries.domain.response import Response
+from src.shared.queries.ports.query_bus import QueryBus
+from src.shared.queries.domain.query_handler import QueryHandler
 
 DefaultQueryHandler: TypeAlias = QueryHandler[Query, Response]
 QueryHandlers: TypeAlias = List[DefaultQueryHandler]

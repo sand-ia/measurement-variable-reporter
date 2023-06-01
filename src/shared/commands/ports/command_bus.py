@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-from src.application.shared.commands.domain.command import Command
+from src.shared.commands.domain.command import Command
 
 
 class CommandBus(ABC):

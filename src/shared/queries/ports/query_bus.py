@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from src.application.shared.queries.domain.query import Query
-from src.application.shared.queries.domain.response import Response
+from src.shared.queries.domain.query import Query
+from src.shared.queries.domain.response import Response
 
 
 class QueryBus(ABC):

@@ -1,6 +1,6 @@
 from typing import Callable, Type, TypeVar
-from src.application.shared.entities.domain.bounded_context import BoundedContext
-from src.application.shared.entities.domain.entity import Entity
+from src.shared.entities.domain.bounded_context import BoundedContext
+from src.shared.entities.domain.entity import Entity
 
 
 class AggregateRoot(Entity):

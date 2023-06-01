@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.application.shared.events.domain.event import Event
+from src.shared.events.domain.event import Event
 
 
 class Producer(ABC):

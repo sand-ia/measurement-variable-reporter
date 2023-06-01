@@ -2,7 +2,7 @@ from datetime import datetime
 from uuid import UUID
 from typing import Tuple
 
-from src.application.shared.events.domain.event import Event, set_aggregate
+from src.shared.events.domain.event import Event, set_aggregate
 from src.application.warehouse.context import WarehouseAggregateRoot
 from src.buses.events.topics import topify
 

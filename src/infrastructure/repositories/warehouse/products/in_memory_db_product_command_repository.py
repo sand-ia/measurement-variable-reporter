@@ -4,11 +4,11 @@ from uuid import UUID
 from injectable import injectable
 
 from src.application.warehouse.products.domain.product import Product
-from src.infrastructure.consumers.warehouse.products.ports.product_command_repository import (
+from src.application.warehouse.products.ports.product_command_repository import (
     ProductCommandRepository,
 )
 from src.infrastructure.repositories.in_memory_db import in_memory_db
-from src.utils.json_encoder import Encoder
+from src.shared.utils.json_encoder import Encoder
 
 
 @injectable(singleton=True)  # type: ignore

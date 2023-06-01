@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from uuid import UUID
-from src.application.shared.queries.domain.response import Response
+from src.shared.queries.domain.response import Response
 
 
 @dataclass

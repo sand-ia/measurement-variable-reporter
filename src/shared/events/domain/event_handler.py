@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Type, TypeVar
 
-from src.application.shared.entities.domain.aggregate_root import AggregateRoot
+from src.shared.entities.domain.aggregate_root import AggregateRoot
 
 
 class EventHandler(ABC):

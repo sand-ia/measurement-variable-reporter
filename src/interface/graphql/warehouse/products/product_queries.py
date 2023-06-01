@@ -9,8 +9,8 @@ from graphene import (
     ResolveInfo,
 )
 
-from src.application.shared.queries.domain.response import Response
-from src.application.shared.queries.ports.query_bus import QueryBus
+from src.shared.queries.domain.response import Response
+from src.shared.queries.ports.query_bus import QueryBus
 from src.application.warehouse.products.services.get_product.get_product_query import (
     GetProductQuery,
 )

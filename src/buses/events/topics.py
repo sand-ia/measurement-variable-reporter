@@ -1,6 +1,6 @@
 from typing import Dict, Type, TypeVar
 
-from src.application.shared.entities.domain.aggregate_root import AggregateRoot
+from src.shared.entities.domain.aggregate_root import AggregateRoot
 
 
 ORGANISATION = "sandia"

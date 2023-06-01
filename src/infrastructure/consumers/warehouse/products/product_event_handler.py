@@ -2,7 +2,7 @@ import json
 from typing import Any, Dict, Type, TypeAlias
 from injectable import injectable, autowired, Autowired
 
-from src.application.shared.events.domain.event_handler import (
+from src.shared.events.domain.event_handler import (
     EventHandler,
     set_aggregate,
 )
@@ -15,7 +15,7 @@ from src.application.warehouse.products.domain.product import (
 from src.application.warehouse.products.ports.product_query_respository import (
     ProductQueryRepository,
 )
-from src.infrastructure.consumers.warehouse.products.ports.product_command_repository import (
+from src.application.warehouse.products.ports.product_command_repository import (
     ProductCommandRepository,
 )
 

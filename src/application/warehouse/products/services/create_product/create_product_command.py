@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from src.application.shared.commands.domain.command import Command
+from src.shared.commands.domain.command import Command
 
 
 @dataclass

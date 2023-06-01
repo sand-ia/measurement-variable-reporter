@@ -3,9 +3,9 @@ from inspect import signature
 from uuid import UUID
 from injectable import Autowired, autowired, injectable
 
-from src.application.shared.commands.domain.command import Command
-from src.application.shared.commands.ports.command_bus import CommandBus
-from src.application.shared.commands.domain.command_handler import CommandHandler
+from src.shared.commands.domain.command import Command
+from src.shared.commands.ports.command_bus import CommandBus
+from src.shared.commands.domain.command_handler import CommandHandler
 
 DefaultCommandHandler: TypeAlias = CommandHandler[Command, UUID | None]
 CommandHandlers: TypeAlias = List[DefaultCommandHandler]

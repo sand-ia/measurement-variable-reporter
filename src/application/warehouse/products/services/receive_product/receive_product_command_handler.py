@@ -2,8 +2,8 @@ from typing import Type, TypeAlias
 from uuid import UUID
 from injectable import injectable, autowired, Autowired
 
-from src.application.shared.commands.domain.command_handler import CommandHandler
-from src.application.shared.events.ports.producer import Producer
+from src.shared.commands.domain.command_handler import CommandHandler
+from src.shared.events.ports.producer import Producer
 from src.application.warehouse.products.services.receive_product.receive_product_command import (
     ReceiveProductCommand,
 )

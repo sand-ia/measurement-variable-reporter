@@ -1,4 +1,6 @@
-from src.infrastructure.consumers.ports.command_repository import CommandRepository
+from src.shared.repositories.ports.command_repository import (
+    CommandRepository,
+)
 from src.application.warehouse.products.domain.product import Product
 
 
