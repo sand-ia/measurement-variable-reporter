@@ -1,10 +1,7 @@
 import json
-from datetime import datetime
-from enum import Enum
-from uuid import UUID
 from threading import Thread
 from typing import Any, Callable, Dict, List, TypeAlias
-from inspect import isclass
+from uuid import uuid4
 
 
 Callback: TypeAlias = Callable[[Any], None]
@@ -23,20 +20,6 @@ class Subscription:
 
 
 class InMemoryEventBus:
-    class Encoder(json.JSONEncoder):
-        def default(self, o: Any):
-            if isinstance(o, UUID):
-                return str(o)
-            if isinstance(o, datetime):
-                return o.isoformat()
-            if isinstance(o, Enum):
-                return o.value
-            if isclass(o):
-                return o.__name__
-            if o.__class__ is not None:
-                return o.__dict__
-            return super().default(o)
-
     def __init__(self, user: str, password: str) -> None:
         self._user: str = user
         self._password: str = password
@@ -64,23 +47,24 @@ class InMemoryEventBus:
         subscription = Subscription(callback, callbacks)
         return subscription
 
-    def publish(self, topic: str, event: Any) -> None:
+    def publish(self, topic: str, event: str) -> None:
         self.auth()
-
         file_path = f"src/buses/events/storage/{topic}.json"
-
-        data: List[Any]
-
         try:
             with open(file_path, "r", encoding="utf8") as file:
-                data = json.load(file)
+                data: List[Dict[str, Any]] = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
             data = []
 
-        data.append(event)
+        event_dict: Dict[str, Any] = json.loads(event)
+        event_uuid = event_dict.get("uuid")
+        if event_uuid is None:
+            event_dict["uuid"] = str(uuid4())
+
+        data.append(event_dict)
 
         with open(file_path, mode="w", encoding="utf8") as file:
-            json.dump(data, file, indent=2, cls=InMemoryEventBus.Encoder)
+            json.dump(data, file, indent=2)
 
         callbacks = self._callbacks_by_topic.get(topic)
         if callbacks is None:

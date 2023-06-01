@@ -8,16 +8,16 @@ from src.application.warehouse.products.domain.product import ProductFactory
 from src.application.warehouse.products.services.create_product.create_product_command import (
     CreateProductCommand,
 )
-from src.application.warehouse.products.ports.product_respository import (
-    ProductRepository,
+from src.application.warehouse.products.ports.product_query_respository import (
+    ProductQueryRepository,
 )
 
 DefaultProducer: TypeAlias = Producer
 AutowiredProducer: Type[DefaultProducer] = Autowired(DefaultProducer)  # type: ignore
 
-DefaultProductRepository: TypeAlias = ProductRepository
-AutowiredProductRepository: Type[DefaultProductRepository] = Autowired(
-    DefaultProductRepository
+DefaultProductQueryRepository: TypeAlias = ProductQueryRepository
+AutowiredProductQueryRepository: Type[DefaultProductQueryRepository] = Autowired(
+    DefaultProductQueryRepository
 )  # type: ignore
 
 
@@ -27,13 +27,12 @@ class CreateProductCommandHandler(CommandHandler[CreateProductCommand, UUID]):
     def __init__(
         self,
         producer: AutowiredProducer,
-        product_repository: AutowiredProductRepository,
+        product_query_repository: AutowiredProductQueryRepository,
     ) -> None:
         self._producer = producer
-        self._product_repository = product_repository
+        self._product_query_repository = product_query_repository
 
     def handle(self, command: CreateProductCommand) -> UUID:
         product, event = ProductFactory.create(command.name, command.stock)
-        self._product_repository.save(product)
         self._producer.publish(event)
         return product.uuid

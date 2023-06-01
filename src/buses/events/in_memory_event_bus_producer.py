@@ -1,9 +1,11 @@
+import json
 from injectable import injectable
 
 from src.application.shared.events.domain.event import Event
 from src.application.shared.events.ports.producer import Producer
 from src.buses.events.in_memory_event_bus import in_memory_event_bus
 from src.buses.events.topics import topics
+from src.utils.json_encoder import Encoder
 
 
 @injectable(singleton=True)  # type: ignore
@@ -15,4 +17,5 @@ class InMemoryEventBusProducer(Producer):
             raise NotImplementedError(
                 f"InMemoryEventBusProducer: No topic found for this aggregate root {aggregate_root}"
             )
-        in_memory_event_bus.publish(topic, event)
+        event_json = json.dumps(event, cls=Encoder)
+        in_memory_event_bus.publish(topic, event_json)
